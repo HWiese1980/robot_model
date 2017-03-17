@@ -63,7 +63,7 @@ bool treeFromString(const std::string& xml, KDL::Tree& tree);
  * \param tree The resulting KDL Tree
  * returns true on success, false on failure
  */
-bool treeFromUrdfModel(boost::shared_ptr<urdf::ModelInterface> robot_model, KDL::Tree& tree);
+bool treeFromUrdfModel(std::shared_ptr<urdf::ModelInterface> robot_model, KDL::Tree& tree);
 }
 
 #endif
