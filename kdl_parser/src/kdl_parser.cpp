@@ -104,7 +104,7 @@ RigidBodyInertia toKdl(std::shared_ptr<urdf::Inertial> i)
 // recursive function to walk through tree
 bool addChildrenToTree(std::shared_ptr<const urdf::Link> root, Tree& tree)
 {
-  std::vector<boost::shared_ptr<urdf::Link> > children = root->child_links;
+  std::vector<std::shared_ptr<urdf::Link> > children = root->child_links;
   logDebug("Link %s had %i children", root->name.c_str(), (int)children.size());
 
   // constructs the optional inertia
@@ -132,13 +132,13 @@ bool addChildrenToTree(std::shared_ptr<const urdf::Link> root, Tree& tree)
 
 bool treeFromFile(const string& file, Tree& tree)
 {
-  boost::shared_ptr<urdf::ModelInterface> robot_model = urdf::parseURDFFile(file);
+  std::shared_ptr<urdf::ModelInterface> robot_model = urdf::parseURDFFile(file);
   return treeFromUrdfModel(robot_model, tree);
 }
 
 bool treeFromString(const string& xml, Tree& tree)
 {
-  boost::shared_ptr<urdf::ModelInterface> robot_model = urdf::parseURDF(xml);
+  std::shared_ptr<urdf::ModelInterface> robot_model = urdf::parseURDF(xml);
   return treeFromUrdfModel(robot_model, tree);
 }
 

@@ -60,7 +60,7 @@ int main(int argc, char** argv)
     std::cerr << "Expect xml file to parse" << std::endl;
     return -1;
   }
-  boost::shared_ptr<urdf::ModelInterface> robot_model = urdf::parseURDFFile(argv[1]);
+  std::shared_ptr<urdf::ModelInterface> robot_model = urdf::parseURDFFile(argv[1]);
 
   Tree my_tree;
   if (!kdl_parser::treeFromUrdfModel(robot_model, my_tree)) 
