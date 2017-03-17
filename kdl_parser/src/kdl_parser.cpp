@@ -64,7 +64,7 @@ Frame toKdl(urdf::Pose p)
 }
 
 // construct joint
-Joint toKdl(boost::shared_ptr<urdf::Joint> jnt)
+Joint toKdl(std::shared_ptr<urdf::Joint> jnt)
 {
   Frame F_parent_jnt = toKdl(jnt->parent_to_joint_origin_transform);
 
@@ -93,7 +93,7 @@ Joint toKdl(boost::shared_ptr<urdf::Joint> jnt)
 }
 
 // construct inertia
-RigidBodyInertia toKdl(boost::shared_ptr<urdf::Inertial> i)
+RigidBodyInertia toKdl(std::shared_ptr<urdf::Inertial> i)
 {
   Frame origin = toKdl(i->origin);
   // kdl specifies the inertia in the reference frame of the link, the urdf specifies the inertia in the inertia reference frame
@@ -102,7 +102,7 @@ RigidBodyInertia toKdl(boost::shared_ptr<urdf::Inertial> i)
 
 
 // recursive function to walk through tree
-bool addChildrenToTree(boost::shared_ptr<const urdf::Link> root, Tree& tree)
+bool addChildrenToTree(std::shared_ptr<const urdf::Link> root, Tree& tree)
 {
   std::vector<boost::shared_ptr<urdf::Link> > children = root->child_links;
   logDebug("Link %s had %i children", root->name.c_str(), (int)children.size());
@@ -142,7 +142,7 @@ bool treeFromString(const string& xml, Tree& tree)
   return treeFromUrdfModel(robot_model, tree);
 }
 
-bool treeFromUrdfModel(boost::shared_ptr<urdf::ModelInterface> robot_model, Tree& tree)
+bool treeFromUrdfModel(std::shared_ptr<urdf::ModelInterface> robot_model, Tree& tree)
 {
   tree = Tree(robot_model->getRoot()->name);
 
